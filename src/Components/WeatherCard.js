@@ -33,6 +33,9 @@ const WeatherCard = ({ weatherData }) => {
                 <Typography sx={{ fontSize: 25, color: "#000", fontWeight: "normal" }}>
                     Date: {moment().locale("el").format("LL")}
                 </Typography>
+                <Typography sx={{ fontSize: 25, color: "#000", fontWeight: "normal" }}>
+                    Hour: {moment().format('HH:mm')}
+                </Typography>
             </CardContent>
         </>
     );

@@ -1,15 +1,17 @@
 import Weather from "./Components/Weather";
-import { ThemeProvider } from "@mui/material";
 import DefaultLayout from "./Layouts/DefaultLayout";
-import theme from "./Assets/Styles/Theme";
+import { LayoutContext } from "./Services/DefaultLayoutContext";
+import { useState } from "react";
 
 function App() {
+  const [bgImage, setBgImage] = useState("#2E3336");
+
   return (
-      <ThemeProvider theme={theme}>
-        <DefaultLayout>
-          <Weather />
-        </DefaultLayout>
-      </ThemeProvider>
+    <LayoutContext.Provider value={{ bgImage, setBgImage }}>
+      <DefaultLayout>
+        <Weather />
+      </DefaultLayout>
+    </LayoutContext.Provider>
   );
 }
 

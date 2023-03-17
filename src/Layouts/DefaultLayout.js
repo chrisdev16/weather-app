@@ -1,24 +1,37 @@
 import { Container, CssBaseline } from "@mui/material";
+import { useContext } from "react";
+import { LayoutContext } from "../Services/DefaultLayoutContext";
 
-const DefaultLayout = (props) => {
-    return (
-        <>
-            <CssBaseline />
-            <Container disableGutters maxWidth={false}>
-                <h1
-                    style={{
-                        color: "#FFF",
-                        margin: 0,
-                        paddingTop: "2vh",
-                        textAlign: "center",
-                    }}
-                >
-                    Weather Summary App
-                </h1>
-                {props.children}
-            </Container>
-        </>
-    );
+const DefaultLayout = ({ children }) => {
+  const { bgImage } = useContext(LayoutContext);
+
+  return (
+    <>
+      <CssBaseline />
+      <Container
+        disableGutters
+        maxWidth={false}
+        sx={{
+          minHeight: "100vh",
+          backgroundImage: `url(${bgImage})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <h1
+          style={{
+            color: "#FFF",
+            marginTop: 0,
+            padding: "30px 0",
+            textAlign: "center",
+          }}
+        >
+          Weather Summary App
+        </h1>
+        {children}
+      </Container>
+    </>
+  );
 };
 
 export default DefaultLayout;
