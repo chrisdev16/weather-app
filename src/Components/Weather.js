@@ -26,7 +26,7 @@ export default function Weather() {
   const [isLoading, setIsLoading] = useState(true);
   const [weatherCondition, setWeatherCondition] = useState(null);
   const [userLocationName, setUserLocationName] = useState(null);
-  const [alertVsible, setAlertVisible] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
 
   const { setBgImage } = useContext(LayoutContext);
 
@@ -47,7 +47,6 @@ export default function Weather() {
 
   const fetchData = useCallback(async () => {
     const URL = `${WEATHER_API_URL}/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_API_KEY}`;
-
     setIsLoading(true);
     await axios
       .get(URL)
@@ -58,6 +57,7 @@ export default function Weather() {
         setIsLoading(false);
         setWeatherCondition(res.weather[0].main);
         setUserLocationName(res.name);
+        console.log(res.data);
       })
       .catch((e) => {
         console.log(e);
@@ -151,7 +151,7 @@ export default function Weather() {
                 marginLeft: "40px",
               }}
             >
-              {alertVsible && (
+              {alertVisible && (
                 <Alert
                   variant="filled"
                   severity="success"
