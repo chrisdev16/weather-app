@@ -1,4 +1,4 @@
-import { Container, CssBaseline } from "@mui/material";
+import { Container, CssBaseline, Typography } from "@mui/material";
 import { useContext } from "react";
 import { LayoutContext } from "../Services/DefaultLayoutContext";
 
@@ -18,7 +18,8 @@ const DefaultLayout = ({ children }) => {
           backgroundSize: "cover",
         }}
       >
-        <h1
+        <Typography
+          variant="h3"
           style={{
             color: "#FFF",
             marginTop: 0,
@@ -27,7 +28,7 @@ const DefaultLayout = ({ children }) => {
           }}
         >
           Weather Summary App
-        </h1>
+        </Typography>
         {children}
       </Container>
     </>

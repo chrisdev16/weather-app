@@ -1,7 +1,13 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { WEATHER_API_KEY, WEATHER_API_URL } from "../Services/Utils";
 import axios from "axios";
-import { Button, CircularProgress, Container, Grid } from "@mui/material";
+import {
+  Alert,
+  Button,
+  CircularProgress,
+  Container,
+  Grid,
+} from "@mui/material";
 import WeatherCard from "./WeatherCard";
 import clouds from "../Assets/Images/storm-clouds.jpg";
 import sunny from "../Assets/Images/sunny_background.jpg";
@@ -20,6 +26,7 @@ export default function Weather() {
   const [isLoading, setIsLoading] = useState(true);
   const [weatherCondition, setWeatherCondition] = useState(null);
   const [userLocationName, setUserLocationName] = useState(null);
+  const [alertVsible, setAlertVisible] = useState(false);
 
   const { setBgImage } = useContext(LayoutContext);
 
@@ -130,6 +137,30 @@ export default function Weather() {
                 userLocationName={userLocationName}
               />
             </Grid>
+
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                borderRadius: "10px",
+                marginBottom: "30px",
+                overflow: "hidden",
+                marginLeft: "40px",
+              }}
+            >
+              {alertVsible && (
+                <Alert
+                  variant="filled"
+                  severity="success"
+                  onClose={() => setAlertVisible(false)}
+                >
+                  User's Location Coordinates Added!
+                </Alert>
+              )}
+            </Grid>
             <Grid
               item
               sx={{
@@ -146,7 +177,10 @@ export default function Weather() {
             >
               <Button
                 variant="outlined"
-                onClick={getPosition}
+                onClick={() => {
+                  setAlertVisible(true);
+                  getPosition();
+                }}
                 startIcon={<LocationOnIcon />}
                 sx={{ height: "6vh", borderRadius: "10px" }}
               >
